@@ -62,7 +62,8 @@ int main(){
         cout << "4. Get Account ID" << endl;
         cout << "5. Get Account Name" << endl;
         cout << "6. Get Account Purpose" << endl;
-        cout << "7. Exit" << endl;
+        cout << "7. Set Account Purpose" << endl;
+        cout << "8. Exit" << endl;
         int option;
         cin >> option;
         switch(option){
@@ -106,8 +107,16 @@ int main(){
             case 6:
                 cout << "The purpose of the account is: " << acct.getPurpose() << endl;
                 break;
-            case 7:
-                return 0; // Exit the program
+            case 7: {
+                cout << "Enter new purpose: ";
+                string newPurpose;
+                cin >> newPurpose;
+                acct.setPurpose(newPurpose);
+                break;
+            }
+            case 8:
+                return 0;
+                 // Exit the program
         }
 
 
