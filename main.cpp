@@ -46,79 +46,33 @@ using namespace std;
 //     return 0;
 // }
 
-int main(){
-    cout << "Add Account name" << endl;
-        string name;
-        cin >> name;
-        cout << "Add Account number" << endl;
-        int acctNumber;
-        cin >> acctNumber;
-        Account acct(name, acctNumber);
-    while(true){
-        cout << "Select an option:" << endl;
-        cout << "1. Add Income" << endl;
-        cout << "2. Add Expense" << endl;
-        cout << "3. Get Balance" << endl;
-        cout << "4. Get Account ID" << endl;
-        cout << "5. Get Account Name" << endl;
-        cout << "6. Get Account Purpose" << endl;
-        cout << "7. Set Account Purpose" << endl;
-        cout << "8. Exit" << endl;
+#include "menuManager.h"
+#include <iostream>
+
+int main() {
+    std::cout << "Welcome to Finance Manager\n";
+    std::cout << "Enter account name: ";
+    string name;
+    getline(std::cin, name);
+    
+    std::cout << "Enter account number: ";
+    int accountNumber;
+    std::cin >> accountNumber;
+    
+    Account account(name, accountNumber);
+    MenuManager menu(account);
+    
+    while (true) {
+        menu.displayMenu();
         int option;
-        cin >> option;
-        switch(option){
-            case 1: {
-                cout << "Enter income amount: ";
-                double amount;
-                cin >> amount;
-                cout << "Enter income reason: ";
-                string reason;
-                cin >> reason;
-                cout << "Enter income date: ";
-                string date;
-                cin >> date;
-                Income newIncome(amount, reason, date);
-                acct.addIncome(newIncome);
-                break;
-            }
-            case 2: {
-                cout << "Enter expense amount: ";
-                double amount;
-                cin >> amount;
-                cout << "Enter expense reason: ";
-                string reason;
-                cin >> reason;
-                cout << "Enter expense date: ";
-                string date;
-                cin >> date;
-                Expense newExpense(amount, reason, date);
-                acct.addExpense(newExpense);
-                break;
-            }
-            case 3:
-                cout << "The balance in the account is: " << acct.getBalance() << endl;
-                break;
-            case 4:
-                cout << "The account number is: " << acct.getId() << endl;
-                break;
-            case 5:
-                cout << "The account holder is: " << acct.getName() << endl;
-                break;
-            case 6:
-                cout << "The purpose of the account is: " << acct.getPurpose() << endl;
-                break;
-            case 7: {
-                cout << "Enter new purpose: ";
-                string newPurpose;
-                cin >> newPurpose;
-                acct.setPurpose(newPurpose);
-                break;
-            }
-            case 8:
-                return 0;
-                 // Exit the program
+        if (std::cin >> option && menu.isValidOption(option)) {
+            menu.processOption(option);
+        } else {
+            std::cout << "Invalid option. Please try again.\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
-
-
     }
+    
+    return 0;
 }

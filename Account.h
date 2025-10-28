@@ -25,6 +25,9 @@ class Account {
         void addExpense(Expense);
         void setBalance();
         double getBalance();
+    public:
+        const std::vector<Income>& getIncomes() const { return incomes; }
+        const std::vector<Expense>& getExpenses() const { return expenses; }
 
 };
 

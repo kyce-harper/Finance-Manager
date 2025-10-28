@@ -8,12 +8,12 @@ Income::Income(double amount, string date, string reason){
     this->date = date;
     this->reason = reason;
 }
-double Income::getAmount(){
+double Income::getAmount() const{
     return amount;
 }
-string Income::getReason(){
+string Income::getReason() const{
     return reason;
 }
-string Income::getDate(){
+string Income::getDate() const{
     return date;
 }

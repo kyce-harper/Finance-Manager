@@ -12,9 +12,9 @@ class Income {
     public:
         Income(double, string, string);
         
-        double getAmount();
-        string getReason();
-        string getDate();
+        double getAmount() const;
+        string getReason() const;
+        string getDate() const;
 
 };
 
